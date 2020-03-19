@@ -6,55 +6,32 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject SettingUI;
-    [SerializeField] private InputField personInputField;
-    [SerializeField] private InputField winningInputField;
+    [SerializeField] private Text personInput;
+    [SerializeField] private Text winningInput;
 
-    [SerializeField] private Column columnPrefabs;
-    [SerializeField] private Column columns;
-    [SerializeField] private Row rowPrefabs;
-    [SerializeField] private Row rows;
+    [SerializeField] private List<GameObject> columnLineList = new List<GameObject>();
+    [SerializeField] private List<GameObject> personList = new List<GameObject>();
+    [SerializeField] private List<GameObject> winningList = new List<GameObject>();
 
-    private int m_people;
-    private int m_winning;
-
-    private const float VERTICAL_MIN = -2.9f;
-    private const float VERTICAL_MAX = 3f;
-
-    private float xPosition = 0;
+    private int people;
+    private int winning;
 
     void Start(){
         SettingUI.SetActive(true);
     }
     public void ClickStartButton(){
         SettingUI.SetActive(false);
-        m_people = int.Parse(personInputField.text);
-        m_winning = int.Parse(winningInputField.text);
-        MakeColumn();
+        people = int.Parse(personInput.text);
+        winning = int.Parse(winningInput.text);
+        MakeLine();
     }
+    private void MakeLine(){
+        for (int i = 0; i < people; i++){
+            List<GameObject> rowLineList = new List<GameObject>();
 
-    private void MakeColumn(){
-        Column column = Instantiate(columnPrefabs);
-        column.transform.parent = columns.transform;
-
-        float yPosition = column.transform.position.y;
-        column.transform.position = new Vector2(xPosition, yPosition);
-
-        for (int i = 0; i < m_people - 1; i++)  {
-            MakeRow();
-
-            xPosition += 1.7f;
-            column = Instantiate(columnPrefabs);
-            column.transform.parent = columns.transform;
-            column.transform.position = new Vector2(xPosition, yPosition);
+            columnLineList[i].SetActive(true);
+            personList[i].SetActive(true);
+            winningList[i].SetActive(true);
         }
-    }
-    private void MakeRow(){
-        for (int j = 0; j < 3; j++) {
-            Row row = Instantiate(rowPrefabs);
-            row.transform.parent = rows.transform;
-
-            float yPosition = Random.Range(VERTICAL_MIN, VERTICAL_MAX);
-            row.transform.position = new Vector2(row.transform.position.x + xPosition, yPosition);
-        }
-    }
+    }     
 }
