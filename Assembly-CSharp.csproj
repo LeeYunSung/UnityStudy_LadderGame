@@ -63,8 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\DupWithoutRename.cs" />
     <Compile Include="Assets\Script\GameController.cs" />
     <Compile Include="Assets\Script\Line.cs" />
+    <Compile Include="Assets\Script\Person.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/yoon/Desktop/UnityTutorial/LadderGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

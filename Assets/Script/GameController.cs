@@ -9,8 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private Text personInput;
     [SerializeField] private Text winningInput;
 
-    [SerializeField] private List<GameObject> columnLineList = new List<GameObject>();
-    [SerializeField] private List<GameObject> personList = new List<GameObject>();
+    [SerializeField] private List<Line> columnLineList = new List<Line>();
+    [SerializeField] private List<Person> personList = new List<Person>();
     [SerializeField] private List<GameObject> winningList = new List<GameObject>();
 
     private int people;
@@ -27,11 +27,9 @@ public class GameController : MonoBehaviour
     }
     private void MakeLine(){
         for (int i = 0; i < people; i++){
-            List<GameObject> rowLineList = new List<GameObject>();
-
-            columnLineList[i].SetActive(true);
-            personList[i].SetActive(true);
-            winningList[i].SetActive(true);
+            columnLineList[i].gameObject.SetActive(true);
+            personList[i].gameObject.SetActive(true);
+            winningList[i].gameObject.SetActive(true);
         }
     }     
 }
