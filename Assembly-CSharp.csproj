@@ -63,10 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Column.cs" />
     <Compile Include="Assets\Script\DupWithoutRename.cs" />
     <Compile Include="Assets\Script\GameController.cs" />
-    <Compile Include="Assets\Script\Line.cs" />
+    <Compile Include="Assets\Script\Left.cs" />
     <Compile Include="Assets\Script\Person.cs" />
+    <Compile Include="Assets\Script\Result.cs" />
+    <Compile Include="Assets\Script\Right.cs" />
+    <Compile Include="Assets\Script\Row.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/yoon/Desktop/UnityTutorial/LadderGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

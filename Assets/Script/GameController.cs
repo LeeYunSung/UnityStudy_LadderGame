@@ -5,31 +5,53 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private GameObject SettingUI;
+    public static GameController Instance { private set; get; }
+
+    [SerializeField] private GameObject settingUI;
     [SerializeField] private Text personInput;
-    [SerializeField] private Text winningInput;
+    [SerializeField] private Button quickButton;
 
-    [SerializeField] private List<Line> columnLineList = new List<Line>();
+    [SerializeField] private List<Column> columnLineList = new List<Column>();
     [SerializeField] private List<Person> personList = new List<Person>();
-    [SerializeField] private List<GameObject> winningList = new List<GameObject>();
+    [SerializeField] private List<Result> resultList = new List<Result>();
 
-    private int people;
-    private int winning;
+    public List<Column> activeColumnLineList = new List<Column>();
+    private List<Person> activedPersonList = new List<Person>();
+    public int people;
 
     void Start(){
-        SettingUI.SetActive(true);
+        Instance = this;//********************************
+        settingUI.SetActive(true);
     }
     public void ClickStartButton(){
-        SettingUI.SetActive(false);
+        settingUI.SetActive(false);
         people = int.Parse(personInput.text);
-        winning = int.Parse(winningInput.text);
         MakeLine();
     }
-    private void MakeLine(){
+    void MakeLine(){ 
         for (int i = 0; i < people; i++){
-            columnLineList[i].gameObject.SetActive(true);
             personList[i].gameObject.SetActive(true);
-            winningList[i].gameObject.SetActive(true);
+            resultList[i].gameObject.SetActive(true);
+            activedPersonList.Add(personList[i]);
         }
-    }     
+        Column column = columnLineList[0];
+        columnLineList[0].gameObject.SetActive(true);
+        activeColumnLineList.Add(column);
+
+        for (int i = 1; i < people; i++){
+            columnLineList[i].SetPrevColumn(column);
+            column = columnLineList[i];
+            activeColumnLineList.Add(column);
+            columnLineList[i].gameObject.SetActive(true);
+        }
+        quickButton.gameObject.SetActive(true);
+    }
+    public void QuickButton(){
+        quickButton.interactable = false;
+        if (activedPersonList.Count > 0){
+            for (int i = 0; i < activedPersonList.Count; i++){
+                activedPersonList[i].ClickPerson();
+            }
+        }
+    }
 }

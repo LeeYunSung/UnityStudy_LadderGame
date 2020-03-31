@@ -2,23 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Person : MonoBehaviour
 {
-    Coroutine coroutine;
+    public int ORDER;
 
     private const string RIGHT = "Right";
     private const string LEFT = "Left";
     private const string WINNING = "Winning";
     private bool moveHorizontal = false;
 
+    Coroutine coroutine;
+    Column currentColumn;
+
+    private void Start() {
+        currentColumn = GameController.Instance.activeColumnLineList[ORDER];
+    }
     public void ClickPerson(){
         transform.parent.transform.GetComponent<GridLayoutGroup>().enabled = false;
         coroutine = StartCoroutine(MoveUnder());
+        transform.GetComponent<EventTrigger>().enabled = false;
+        currentColumn.Search(0);
     }
+    //Animation
     private void OnTriggerEnter2D(Collider2D other) {
         StopCoroutine(coroutine);
-
         if (moveHorizontal) {
             moveHorizontal = false;
             coroutine = StartCoroutine(MoveUnder());
@@ -37,19 +46,19 @@ public class Person : MonoBehaviour
     }
     IEnumerator MoveUnder(){
         while (true){
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
             transform.position = new Vector2(transform.position.x, transform.position.y - 5f);
         }
     }
     IEnumerator MoveRight(){
         while (true){
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
             transform.position = new Vector2(transform.position.x + 5f, transform.position.y);
         }
     }
     IEnumerator MoveLeft(){
         while (true) {
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
              transform.position = new Vector2(transform.position.x - 5f, transform.position.y);
         }
     }
