@@ -15,43 +15,34 @@ public class GameController : MonoBehaviour
     [SerializeField] private List<Person> personList = new List<Person>();
     [SerializeField] private List<Result> resultList = new List<Result>();
 
-    public List<Column> activeColumnLineList = new List<Column>();
-    private List<Person> activedPersonList = new List<Person>();
-    public int people;
-
     void Start(){
-        Instance = this;//********************************
+        Instance = this;
         settingUI.SetActive(true);
     }
     public void ClickStartButton(){
         settingUI.SetActive(false);
-        people = int.Parse(personInput.text);
-        MakeLine();
+        int people = int.Parse(personInput.text);
+        MakeLine(people);
     }
-    void MakeLine(){ 
+    //generate column
+    void MakeLine(int people){
         for (int i = 0; i < people; i++){
+            columnLineList[i].gameObject.SetActive(true);
             personList[i].gameObject.SetActive(true);
             resultList[i].gameObject.SetActive(true);
-            activedPersonList.Add(personList[i]);
-        }
-        Column column = columnLineList[0];
-        columnLineList[0].gameObject.SetActive(true);
-        activeColumnLineList.Add(column);
-
-        for (int i = 1; i < people; i++){
-            columnLineList[i].SetPrevColumn(column);
-            column = columnLineList[i];
-            activeColumnLineList.Add(column);
-            columnLineList[i].gameObject.SetActive(true);
+            if (i > 0){
+                columnLineList[i].MakeRow(columnLineList[i - 1]);
+            }
         }
         quickButton.gameObject.SetActive(true);
     }
     public void QuickButton(){
         quickButton.interactable = false;
-        if (activedPersonList.Count > 0){
-            for (int i = 0; i < activedPersonList.Count; i++){
-                activedPersonList[i].ClickPerson();
-            }
+        for (int i = 0; i < personList.Count; i++){
+            personList[i].ClickPerson();
         }
+    }
+    public Column GetCurrentColumn(int order) {
+        return columnLineList[order];
     }
 }

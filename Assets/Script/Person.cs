@@ -14,16 +14,18 @@ public class Person : MonoBehaviour
     private bool moveHorizontal = false;
 
     Coroutine coroutine;
-    Column currentColumn;
 
-    private void Start() {
-        currentColumn = GameController.Instance.activeColumnLineList[ORDER];
-    }
+    private bool clicked = false;
     public void ClickPerson(){
-        transform.parent.transform.GetComponent<GridLayoutGroup>().enabled = false;
-        coroutine = StartCoroutine(MoveUnder());
-        transform.GetComponent<EventTrigger>().enabled = false;
-        currentColumn.Search(0);
+        if (clicked != true){
+            clicked = true;
+            transform.parent.transform.GetComponent<GridLayoutGroup>().enabled = false;
+            coroutine = StartCoroutine(MoveUnder());
+            transform.GetComponent<EventTrigger>().enabled = false;
+
+            Column currentColumn = GameController.Instance.GetCurrentColumn(ORDER);
+            currentColumn.Search(0);
+        }
     }
     //Animation
     private void OnTriggerEnter2D(Collider2D other) {
