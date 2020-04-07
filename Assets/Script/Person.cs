@@ -24,7 +24,8 @@ public class Person : MonoBehaviour
             transform.GetComponent<EventTrigger>().enabled = false;
 
             Column currentColumn = GameController.Instance.GetCurrentColumn(ORDER);
-            currentColumn.Search(0);
+            Column resultColumn = currentColumn.Search();
+            Debug.Log(resultColumn.name);
         }
     }
     //Animation

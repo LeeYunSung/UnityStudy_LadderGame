@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{0740A7D8-B76A-DFDC-3440-076ED8D5D1D8}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Column.cs">
     <Files>
-      <File FileName="Assets/Script/GameController.cs" Line="34" Column="14" IsPinned="True" />
+      <File FileName="Assets/Script/GameController.cs" Line="33" Column="24" IsPinned="True" />
       <File FileName="Assets/Script/Person.cs" />
-      <File FileName="Assets/Script/Row.cs" Line="7" Column="46" />
-      <File FileName="Assets/Script/Column.cs" Line="10" Column="3" NotebookId="1" />
+      <File FileName="Assets/Script/Row.cs" Line="14" Column="46" />
+      <File FileName="Assets/Script/Column.cs" Line="14" Column="37" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="9e7c16ab-8575-4105-8d32-bf15f73af83a" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e8ad50b3-01e8-42ce-b22c-373ce497500f" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
