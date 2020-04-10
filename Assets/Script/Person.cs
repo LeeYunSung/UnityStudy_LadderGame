@@ -4,65 +4,44 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Person : MonoBehaviour
-{
+public class Person : MonoBehaviour {
     public int ORDER;
-
-    private const string RIGHT = "Right";
-    private const string LEFT = "Left";
-    private const string WINNING = "Winning";
-    private bool moveHorizontal = false;
-
-    Coroutine coroutine;
-
     private bool clicked = false;
-    public void ClickPerson(){
-        if (clicked != true){
+    const float SPEED = 200;
+
+    [SerializeField] private GameObject emptyObject;
+
+    public void ClickPerson() {
+        if (clicked != true) {
             clicked = true;
             transform.parent.transform.GetComponent<GridLayoutGroup>().enabled = false;
-            coroutine = StartCoroutine(MoveUnder());
             transform.GetComponent<EventTrigger>().enabled = false;
 
             Column currentColumn = GameController.Instance.GetCurrentColumn(ORDER);
-            Column resultColumn = currentColumn.Search();
-            Debug.Log(resultColumn.name);
+            List<Path> path = currentColumn.Search();
+
+            emptyObject.transform.parent = transform.parent;
+            //StartCoroutine(Move(path));
         }
     }
-    //Animation
-    private void OnTriggerEnter2D(Collider2D other) {
-        StopCoroutine(coroutine);
-        if (moveHorizontal) {
-            moveHorizontal = false;
-            coroutine = StartCoroutine(MoveUnder());
-        }
-        else if (other.gameObject.name == LEFT){ //왼쪽 Collider만나면 오른쪽으로 이동
-            moveHorizontal = true;
-            coroutine = StartCoroutine(MoveRight());
-        }
-        else if (other.gameObject.name == RIGHT){ //오른쪽 Collider만나면 왼쪽으로 이동
-            moveHorizontal = true;
-            coroutine = StartCoroutine(MoveLeft());
-        }
-        else if(other.gameObject.name == WINNING){
-            StopCoroutine(coroutine);
-        }
-    }
-    IEnumerator MoveUnder(){
-        while (true){
-            yield return new WaitForSecondsRealtime(Time.deltaTime);
-            transform.position = new Vector2(transform.position.x, transform.position.y - 5f);
+    /*
+    IEnumerator Move(List<Path> path) {
+        Debug.Log(path.Count);
+        for (int i = 0; i < path.Count; i++) {
+            if (i + 1 < path.Count) {
+                transform.parent = path[i].transform;
+                Vector3 movePosition = path[i].GetPosition(path[i + 1]);//이동경로중의 좌표를 받아와서 움직이
+                Debug.Log(movePosition);
+                transform.position = movePosition;
+                yield return new WaitForSeconds(1);
+                //while (movePosition != transform.position) {
+                //    yield return null;
+                //    transform.position = Vector3.MoveTowards(transform.position, movePosition, Time.deltaTime * SPEED);
+                //    //    transform.position = movePosition;
+                //    //yield retuDrn new WaitForSeconds(2f);
+                //}
+            }
         }
     }
-    IEnumerator MoveRight(){
-        while (true){
-            yield return new WaitForSecondsRealtime(Time.deltaTime);
-            transform.position = new Vector2(transform.position.x + 5f, transform.position.y);
-        }
-    }
-    IEnumerator MoveLeft(){
-        while (true) {
-            yield return new WaitForSecondsRealtime(Time.deltaTime);
-             transform.position = new Vector2(transform.position.x - 5f, transform.position.y);
-        }
-    }
+    */
 }
