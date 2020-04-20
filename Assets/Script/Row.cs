@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Row : Path
 {
-    private Column firstColumn, secondColumn;
+    Column firstColumn, secondColumn;
+
+    Vector2 LEFTPOSITION = new Vector2(0,0);
+    Vector2 RIGHTPOSITION = new Vector2(100,0);
+
     public void SetColumn(Column column1, Column column2){
         firstColumn = column1;
         secondColumn = column2;
@@ -14,10 +18,10 @@ public class Row : Path
         Column nextColumn = (currentColumn == firstColumn) ? secondColumn : firstColumn;
         return nextColumn;
     }
-    public override Vector3 GetPosition(Path path) {
-        Path nextPath = (path == firstColumn) ? secondColumn : firstColumn; ;
-        Vector3 vector = new Vector3(nextPath.GetComponent<RectTransform>().rect.position.x,
-                                     GetComponent<RectTransform>().rect.position.y); 
-        return vector;
+    public override Vector2 GetPosition(Path path) {
+        return (path == firstColumn) ? LEFTPOSITION : RIGHTPOSITION;
+    }
+    public override Path GetParent(Path path) {
+        return this;
     }
 }

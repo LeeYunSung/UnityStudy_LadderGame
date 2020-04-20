@@ -6,11 +6,16 @@ using UnityEngine.EventSystems;
 
 public class Person : MonoBehaviour {
     public int ORDER;
-    private bool clicked = false;
-    const float SPEED = 200;
+    public bool clicked = false;
 
+    const float SPEED = 300;
     [SerializeField] private GameObject emptyObject;
 
+    public RectTransform rectTransform;
+
+    private void Start() { 
+        rectTransform = GetComponent<RectTransform>();
+    }
     public void ClickPerson() {
         if (clicked != true) {
             clicked = true;
@@ -19,29 +24,29 @@ public class Person : MonoBehaviour {
 
             Column currentColumn = GameController.Instance.GetCurrentColumn(ORDER);
             List<Path> path = currentColumn.Search();
-
+            Debug.Log(path[path.Count - 1]);
             emptyObject.transform.parent = transform.parent;
-            //StartCoroutine(Move(path));
+            StartCoroutine(Move(path));
         }
     }
-    /*
     IEnumerator Move(List<Path> path) {
-        Debug.Log(path.Count);
+        Vector2 nextPosition;
         for (int i = 0; i < path.Count; i++) {
-            if (i + 1 < path.Count) {
-                transform.parent = path[i].transform;
-                Vector3 movePosition = path[i].GetPosition(path[i + 1]);//이동경로중의 좌표를 받아와서 움직이
-                Debug.Log(movePosition);
-                transform.position = movePosition;
-                yield return new WaitForSeconds(1);
-                //while (movePosition != transform.position) {
-                //    yield return null;
-                //    transform.position = Vector3.MoveTowards(transform.position, movePosition, Time.deltaTime * SPEED);
-                //    //    transform.position = movePosition;
-                //    //yield retuDrn new WaitForSeconds(2f);
+            Path nextPath = i + 1 < path.Count ? path[i + 1] : null;
+            transform.parent = path[i].GetParent(nextPath).transform;
+            nextPosition = path[i].GetPosition(nextPath);
+
+            //  Vector2 delta = nextPosition - rectTransform.anchoredPosition;
+            //   int move = 0;
+            //  for(int j=0; j<move; j++) {
+
+            while (rectTransform.anchoredPosition != nextPosition) {
+                //while (Vector2.Distance(rectTransform.anchoredPosition, nextPosition) > 0.1f){
+                //rectTransform.anchoredPosition += delta;
+                rectTransform.anchoredPosition = Vector2.MoveTowards(rectTransform.anchoredPosition, nextPosition, SPEED * Time.deltaTime);
+                yield return null;
                 //}
             }
         }
     }
-    */
 }

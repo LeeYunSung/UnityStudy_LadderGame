@@ -6,14 +6,15 @@ using System.Linq;
 public class Column : Path {
     [SerializeField] private List<Row> rowLineList = new List<Row>();
     List<Row> selectedRowLineList = new List<Row>();
-   
+
     public void MakeRow(Column prevColumn) {
         for (int i = 0; i < 3; i++) {
             int random = Random.Range(0, rowLineList.Count);
             if (!rowLineList[random].gameObject.activeSelf) {
                 rowLineList[random].gameObject.SetActive(true);
                 selectedRowLineList.Add(rowLineList[random]);
-            }else i -= 1;
+            }
+            else i -= 1;
         }
         for (int i = 0; i < selectedRowLineList.Count; i++) {
             selectedRowLineList[i].SetColumn(prevColumn, this);
@@ -34,21 +35,32 @@ public class Column : Path {
     }
     public List<Path> Search(Row row) {
         int index = selectedRowLineList.IndexOf(row);
-         if(index != -1 && index + 1 != selectedRowLineList.Count) { 
-            Column column = selectedRowLineList[index+ 1].GetColumn(this);//다음 세로줄 넘어가는 부분
-            List<Path> path2 = column.Search(selectedRowLineList[index+1]);
-            path2.Insert(0,this);
-            path2.Insert(0,row);
+        if (index != -1 && index + 1 != selectedRowLineList.Count) {
+            Column column = selectedRowLineList[index + 1].GetColumn(this);//다음 세로줄 넘어가는 부분
+            List<Path> path2 = column.Search(selectedRowLineList[index + 1]);
+            path2.Insert(0, this);
+            path2.Insert(0, row);
             return path2;
         }
         List<Path> path = new List<Path>();
         path.Add(this);
-        path.Insert(0,row);
+        path.Insert(0, row);
         return path;
     }
-    public override Vector3 GetPosition(Path path) {
-        Vector3 vector = new Vector3(path.GetComponent<RectTransform>().rect.position.x - path.GetComponent<RectTransform>().rect.width,
-                                     path.GetComponent<RectTransform>().rect.position.y);
-        return vector;
+    public override Vector2 GetPosition(Path path) {
+        return path != null ? path.GetPosition(this) : new Vector2(0, -rectTransform.rect.height / 2);
+
+        //Vector2 nextPath;
+        //if (path != null) {
+        //    
+        //    nextPath = path.GetPosition(this);
+        //}
+        //else{
+        //    new Vector2(0, -rectTransform.rect.height / 2);
+        //}
+
+    }
+    public override Path GetParent(Path path) {
+        return path.GetParent(path);
     }
 }

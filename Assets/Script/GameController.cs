@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private List<Column> columnLineList = new List<Column>();
     [SerializeField] private List<Person> personList = new List<Person>();
     [SerializeField] private List<Result> resultList = new List<Result>();
-
+    
     void Start(){
         Instance = this;
         settingUI.SetActive(true);
@@ -38,8 +38,10 @@ public class GameController : MonoBehaviour
     }
     public void QuickButton(){
         quickButton.interactable = false;
-        for (int i = 0; i < personList.Count; i++){
-            personList[i].ClickPerson();
+        foreach(Person person in personList) { 
+            if (!person.clicked) {
+                person.ClickPerson();
+            }
         }
     }
     public Column GetCurrentColumn(int order) {

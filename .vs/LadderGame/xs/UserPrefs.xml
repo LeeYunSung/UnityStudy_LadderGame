@@ -1,37 +1,20 @@
 ﻿<Properties StartupConfiguration="{0740A7D8-B76A-DFDC-3440-076ED8D5D1D8}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Person.cs">
     <Files>
-      <File FileName="Assets/Script/GameController.cs" Line="44" Column="6" IsPinned="True" />
-      <File FileName="Assets/Script/Person.cs" Line="28" Column="35" />
-      <File FileName="Assets/Script/Path.cs" Line="9" Column="1" />
-      <File FileName="Assets/Script/Row.cs" Line="20" Column="3" NotebookId="1" />
-      <File FileName="Assets/Script/Column.cs" Line="33" Column="22" NotebookId="1" />
+      <File FileName="Assets/Script/GameController.cs" Line="39" Column="31" IsPinned="True" />
+      <File FileName="Assets/Script/Person.cs" Line="43" Column="20" />
+      <File FileName="Assets/Script/Path.cs" Line="9" Column="45" />
+      <File FileName="Assets/Script/Row.cs" Line="28" Column="1" NotebookId="1" IsPinned="True" />
+      <File FileName="Assets/Script/Column.cs" Line="45" Column="29" NotebookId="1" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>currentColumn</Value>
-          <Value>row.name</Value>
-          <Value>currentColumn.name</Value>
-          <Value>currentRow.name</Value>
-          <Value>currentColumn.name</Value>
-          <Value>currentRow.name</Value>
-          <Value>transform.position.x</Value>
-          <Value>transform.position.y</Value>
-          <Value>path</Value>
-          <Value>movePosition</Value>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="930e3649-9a02-4fec-950f-ef3babdca052" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="66787484-eb35-4725-b8fa-69452f02eb77" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/yoon/Desktop/UnityTutorial/LadderGame/Assets/Script/Row.cs" relfile="Assets/Script/Row.cs" line="17" column="1" />
-      <Breakpoint file="/Users/yoon/Desktop/UnityTutorial/LadderGame/Assets/Script/Column.cs" relfile="Assets/Script/Column.cs" line="49" column="1" />
-      <Breakpoint file="/Users/yoon/Desktop/UnityTutorial/LadderGame/Assets/Script/Person.cs" relfile="Assets/Script/Person.cs" line="28" column="1" />
+      <Breakpoint file="/Users/yoon/Desktop/UnityTutorial/LadderGame/Assets/Script/Row.cs" relfile="Assets/Script/Row.cs" line="21" column="1" />
+      <Breakpoint file="/Users/yoon/Desktop/UnityTutorial/LadderGame/Assets/Script/Person.cs" relfile="Assets/Script/Person.cs" line="32" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
