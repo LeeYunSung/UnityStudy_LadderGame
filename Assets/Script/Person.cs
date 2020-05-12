@@ -7,14 +7,32 @@ using UnityEngine.EventSystems;
 public class Person : MonoBehaviour {
     public int ORDER;
     public bool clicked = false;
-
+   
+    private Vector2 firstPosition;
     const float SPEED = 300;
+    string result;
+
+    [SerializeField] private GameObject personObject;
     [SerializeField] private GameObject emptyObject;
+    [SerializeField] private GameObject emptyObjectParent;
 
-    public RectTransform rectTransform;
-
+    private RectTransform rectTransform;
+    
+    public void Reset(){
+        clicked = false;
+        transform.SetParent(personObject.transform);
+        emptyObject.transform.SetParent(emptyObjectParent.transform);
+        transform.SetSiblingIndex(ORDER);
+        transform.parent.transform.GetComponent<GridLayoutGroup>().enabled = true;
+        transform.GetComponent<EventTrigger>().enabled = true;
+        rectTransform.position = new Vector2(firstPosition.x, firstPosition.y);
+    }
     private void Start() { 
         rectTransform = GetComponent<RectTransform>();
+        firstPosition = new Vector2(rectTransform.position.x, rectTransform.position.y);
+    }
+    public string getResult(){
+        return result;
     }
     public void ClickPerson() {
         if (clicked != true) {
@@ -22,30 +40,35 @@ public class Person : MonoBehaviour {
             transform.parent.transform.GetComponent<GridLayoutGroup>().enabled = false;
             transform.GetComponent<EventTrigger>().enabled = false;
 
+            //Route Search
             Column currentColumn = GameController.Instance.GetCurrentColumn(ORDER);
             List<Path> path = currentColumn.Search();
-            Debug.Log(path[path.Count - 1]);
-            emptyObject.transform.parent = transform.parent;
+
+            //Debug.Log("######Result: " + path[path.Count - 1]);
+            result = path[path.Count - 1].name;
+
+            emptyObject.transform.SetParent(transform.parent);
             StartCoroutine(Move(path));
         }
     }
     IEnumerator Move(List<Path> path) {
+        Path nextPath;
         Vector2 nextPosition;
+
         for (int i = 0; i < path.Count; i++) {
-            Path nextPath = i + 1 < path.Count ? path[i + 1] : null;
-            transform.parent = path[i].GetParent(nextPath).transform;
+            //Get nextPath
+            nextPath = i + 1 < path.Count ? path[i + 1] : null;
+
+            //Change standard object
+            transform.SetParent(path[i].GetParent(nextPath).transform);
+
+            //Get nextPath's position
             nextPosition = path[i].GetPosition(nextPath);
 
-            //  Vector2 delta = nextPosition - rectTransform.anchoredPosition;
-            //   int move = 0;
-            //  for(int j=0; j<move; j++) {
-
+            //Go to the nextPath position
             while (rectTransform.anchoredPosition != nextPosition) {
-                //while (Vector2.Distance(rectTransform.anchoredPosition, nextPosition) > 0.1f){
-                //rectTransform.anchoredPosition += delta;
                 rectTransform.anchoredPosition = Vector2.MoveTowards(rectTransform.anchoredPosition, nextPosition, SPEED * Time.deltaTime);
                 yield return null;
-                //}
             }
         }
     }

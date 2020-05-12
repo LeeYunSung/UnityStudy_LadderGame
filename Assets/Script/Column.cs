@@ -7,6 +7,14 @@ public class Column : Path {
     [SerializeField] private List<Row> rowLineList = new List<Row>();
     List<Row> selectedRowLineList = new List<Row>();
 
+    public void Reset(){
+        for (int i = 0; i < rowLineList.Count; i++) {
+            if (rowLineList[i].gameObject.activeSelf) {
+                rowLineList[i].gameObject.SetActive(false);
+            }
+        }
+        selectedRowLineList.Clear();
+    }
     public void MakeRow(Column prevColumn) {
         for (int i = 0; i < 3; i++) {
             int random = Random.Range(0, rowLineList.Count);
@@ -33,6 +41,7 @@ public class Column : Path {
         path3.Insert(0, this);
         return path3;
     }
+
     public List<Path> Search(Row row) {
         int index = selectedRowLineList.IndexOf(row);
         if (index != -1 && index + 1 != selectedRowLineList.Count) {
@@ -47,20 +56,12 @@ public class Column : Path {
         path.Insert(0, row);
         return path;
     }
+
     public override Vector2 GetPosition(Path path) {
         return path != null ? path.GetPosition(this) : new Vector2(0, -rectTransform.rect.height / 2);
-
-        //Vector2 nextPath;
-        //if (path != null) {
-        //    
-        //    nextPath = path.GetPosition(this);
-        //}
-        //else{
-        //    new Vector2(0, -rectTransform.rect.height / 2);
-        //}
-
     }
+
     public override Path GetParent(Path path) {
-        return path.GetParent(path);
+        return path != null ? path.GetParent(path) : this;
     }
 }
