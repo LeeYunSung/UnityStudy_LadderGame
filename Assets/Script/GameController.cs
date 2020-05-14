@@ -48,7 +48,6 @@ public class GameController : MonoBehaviour
             caseInputList[i].text = "";
             caseInputList[i].gameObject.SetActive(false);
             caseList[i].gameObject.SetActive(false);
-
             resultList[i].gameObject.SetActive(false);
         }
     }
@@ -56,10 +55,6 @@ public class GameController : MonoBehaviour
     public void ClickNextButton(){
         guideUI1.SetActive(false);
         guideUI2.SetActive(true);
-
-        //while(personInput.text == "2-9"){
-        //    people = int.Parse(personInput.text);
-        //}
 
         people = int.Parse(personInput.text);
         for (int i = 0; i < people; i++){
@@ -70,7 +65,7 @@ public class GameController : MonoBehaviour
     public void ClickStartButton(){
         guideUI2.SetActive(false);
         for(int i = 0; i<people; i++){
-            caseList[i].text = caseInputList[i].text;
+            caseList[i].text = "";
         }
         MakeLine();
     }
@@ -80,8 +75,8 @@ public class GameController : MonoBehaviour
         resultUI.SetActive(true);
 
         QuickButton();
-        for (int i = 0; i < people; i++) { 
-            resultTextList[i].text = caseList[int.Parse(personList[i].getResult())-1].text;
+        for (int i = 0; i < people; i++) {
+            resultTextList[i].text = caseInputList[int.Parse(personList[i].getResult())-1].text;
             resultList[i].gameObject.SetActive(true);
         }
     }
@@ -111,5 +106,9 @@ public class GameController : MonoBehaviour
 
     public Column GetCurrentColumn(int order) {
         return columnLineList[order];
+    }
+
+    public void OpenResult(string result) {
+        caseList[int.Parse(result) - 1].text = caseInputList[int.Parse(result) - 1].text;
     }
 }

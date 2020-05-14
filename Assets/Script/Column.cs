@@ -58,7 +58,7 @@ public class Column : Path {
     }
 
     public override Vector2 GetPosition(Path path) {
-        return path != null ? path.GetPosition(this) : new Vector2(0, -rectTransform.rect.height / 2);
+        return path != null ? path.GetPosition(this) : new Vector2(0, -rectTransform.rect.height);
     }
 
     public override Path GetParent(Path path) {

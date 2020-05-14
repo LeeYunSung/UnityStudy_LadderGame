@@ -9,7 +9,7 @@ public class Person : MonoBehaviour {
     public bool clicked = false;
    
     private Vector2 firstPosition;
-    const float SPEED = 300;
+    const float SPEED = 150;
     string result;
 
     [SerializeField] private GameObject personObject;
@@ -71,5 +71,6 @@ public class Person : MonoBehaviour {
                 yield return null;
             }
         }
+        GameController.Instance.OpenResult(result);
     }
 }

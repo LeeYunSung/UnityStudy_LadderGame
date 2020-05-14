@@ -1,36 +1,19 @@
 ﻿<Properties StartupConfiguration="{B1818CB8-6F09-1D0D-EA2C-FDC8A8117BAA}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GameController.cs">
     <Files>
-      <File FileName="Assets/Script/GameController.cs" Line="69" Column="6" />
+      <File FileName="Assets/Script/GameController.cs" Line="112" Column="48" />
       <File FileName="Assets/Script/Person.cs" />
       <File FileName="Assets/Script/Column.cs" />
       <File FileName="Assets/Script/Row.cs" />
       <File FileName="Assets/Script/Path.cs" />
       <File FileName="Assets/Script/Left.cs" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="UnityStudy_LadderGame" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Script" expanded="True">
-                <Node name="GameController.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="46eaa0bd-f73f-4148-a631-abef46264cf2" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4344d200-6b08-4d7e-a170-f841f96e6614" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/yoonsung/UnityProjects/UnityStudy_LadderGame/Assets/Script/Row.cs" relfile="Assets/Script/Row.cs" line="22" column="1" />
-      <Breakpoint file="/Users/yoonsung/UnityProjects/UnityStudy_LadderGame/Assets/Script/Row.cs" relfile="Assets/Script/Row.cs" line="26" column="1" />
-      <Breakpoint file="/Users/yoonsung/UnityProjects/UnityStudy_LadderGame/Assets/Script/Person.cs" relfile="Assets/Script/Person.cs" line="47" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
