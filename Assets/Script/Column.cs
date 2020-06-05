@@ -7,14 +7,21 @@ public class Column : Path {
     [SerializeField] private List<Row> rowLineList = new List<Row>();
     List<Row> selectedRowLineList = new List<Row>();
 
+    RectTransform rectTransform;
+
     public void Reset(){
         for (int i = 0; i < rowLineList.Count; i++) {
             if (rowLineList[i].gameObject.activeSelf) {
-                rowLineList[i].gameObject.SetActive(false);
+                rowLineList[i].Reset();
             }
         }
         selectedRowLineList.Clear();
+        gameObject.SetActive(false);
     }
+    public void Awake(){
+        rectTransform = GetComponent<RectTransform>();
+    }
+
     public void MakeRow(Column prevColumn) {
         for (int i = 0; i < 3; i++) {
             int random = Random.Range(0, rowLineList.Count);
@@ -29,13 +36,13 @@ public class Column : Path {
         }
         selectedRowLineList = selectedRowLineList.OrderByDescending(x => x.transform.position.y).ToList();
     }
+
     public void RequestConnecting(Row row) {
         selectedRowLineList.Add(row);
         selectedRowLineList = selectedRowLineList.OrderByDescending(x => x.transform.position.y).ToList();
     }
-
+    
     public List<Path> Search() {
-        //return Search(selectedRowLineList[0]);
         Column column = selectedRowLineList[0].GetColumn(this);
         List<Path> path3 = column.Search(selectedRowLineList[0]);
         path3.Insert(0, this);
@@ -45,7 +52,7 @@ public class Column : Path {
     public List<Path> Search(Row row) {
         int index = selectedRowLineList.IndexOf(row);
         if (index != -1 && index + 1 != selectedRowLineList.Count) {
-            Column column = selectedRowLineList[index + 1].GetColumn(this);//다음 세로줄 넘어가는 부분
+            Column column = selectedRowLineList[index + 1].GetColumn(this);
             List<Path> path2 = column.Search(selectedRowLineList[index + 1]);
             path2.Insert(0, this);
             path2.Insert(0, row);

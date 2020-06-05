@@ -5,8 +5,12 @@ using UnityEngine;
 public class Row : Path
 {
     Column firstColumn, secondColumn;
-    Vector2 LEFTPOSITION = new Vector2(0,0);
+    Vector2 LEFTPOSITION = new Vector2(0, 0);
     Vector2 RIGHTPOSITION = new Vector2(74, 0);
+
+    public void Reset(){
+        gameObject.SetActive(false);
+    }
 
     public void SetColumn(Column column1, Column column2){
         firstColumn = column1;

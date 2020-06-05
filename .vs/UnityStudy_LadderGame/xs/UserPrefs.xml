@@ -1,19 +1,20 @@
 ﻿<Properties StartupConfiguration="{B1818CB8-6F09-1D0D-EA2C-FDC8A8117BAA}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Person.cs">
     <Files>
-      <File FileName="Assets/Script/GameController.cs" Line="112" Column="48" />
-      <File FileName="Assets/Script/Person.cs" />
-      <File FileName="Assets/Script/Column.cs" />
-      <File FileName="Assets/Script/Row.cs" />
-      <File FileName="Assets/Script/Path.cs" />
-      <File FileName="Assets/Script/Left.cs" />
+      <File FileName="Assets/Script/Path.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Row.cs" Line="21" Column="44" />
+      <File FileName="Assets/Script/Person.cs" Line="66" Column="1" />
+      <File FileName="Assets/Script/GameController.cs" Line="144" Column="1" NotebookId="1" />
+      <File FileName="Assets/Script/Column.cs" Line="66" Column="1" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4344d200-6b08-4d7e-a170-f841f96e6614" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ac4f5a35-2c21-4a04-a252-6ec3c406f825" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/yoonsung/UnityProjects/UnityStudy_LadderGame/Assets/Script/GameController.cs" relfile="Assets/Script/GameController.cs" line="132" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
