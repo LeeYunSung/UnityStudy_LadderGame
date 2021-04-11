@@ -13,3 +13,4 @@ Unity프로그램으로 구현한 사다리 게임입니다.
 6) Reset 버튼
 
 ### - Game Screenshot
+![그림2](https://user-images.githubusercontent.com/32055099/114312446-ac363780-9b2d-11eb-9f26-8c338943bb36.png)
